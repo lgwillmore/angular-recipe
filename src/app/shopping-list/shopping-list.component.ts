@@ -1,4 +1,4 @@
-import {Component} from "@angular/core";
+import {Component, ViewChild, ElementRef} from "@angular/core";
 import {Ingredient} from "../shared/ingredient.model";
 
 @Component(
@@ -14,4 +14,7 @@ export class ShoppingList {
     new Ingredient('Potatos', 10)
   ];
 
+  onIngredientAdded(ingredient :Ingredient){
+    this.ingredients.push(ingredient);
+  }
 }
