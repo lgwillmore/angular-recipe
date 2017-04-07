@@ -6,6 +6,7 @@ import {Ingredient} from "../shared/ingredient.model";
 export class RecipeService {
 
   recipeSelected = new EventEmitter<Recipe>();
+  selectedRecipe :Recipe;
 
   private _recipes: Recipe[] = [
     new Recipe(
@@ -30,7 +31,17 @@ export class RecipeService {
   constructor() {
   }
 
+  selectRecipe(recipe :Recipe){
+    this.selectedRecipe=recipe;
+    this.recipeSelected.emit(recipe)
+  }
+
   getRecipes(): Recipe[] {
     return this._recipes.slice();
   }
+
+  getSelectedRecipe() :Recipe {
+    return this.selectedRecipe;
+  }
+
 }

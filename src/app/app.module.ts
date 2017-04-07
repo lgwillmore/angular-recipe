@@ -34,7 +34,7 @@ import {ShoppingService} from "./shopping-list/shopping.service";
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ShoppingService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
