@@ -14,6 +14,7 @@ import {RecipeItemComponent} from "./recipe-book/recipe-list/recipe-item/recipe-
 import {DropDownDirective} from "./directives/drop-down.directive";
 import {AppRoutingModule} from "./app-routing.module";
 import {ShoppingService} from "./shopping-list/shopping.service";
+import {RecipeStartComponent} from "./recipe-book/recipe-start/recipe-start.component";
 
 
 @NgModule({
@@ -26,8 +27,9 @@ import {ShoppingService} from "./shopping-list/shopping.service";
     RecipeBookComponent,
     RecipeListComponent,
     RecipeDetailComponent,
+    RecipeStartComponent,
     RecipeItemComponent,
-    DropDownDirective
+    DropDownDirective,
   ],
   imports: [
     BrowserModule,

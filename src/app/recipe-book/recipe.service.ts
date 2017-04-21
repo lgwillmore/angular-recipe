@@ -5,43 +5,50 @@ import {Ingredient} from "../shared/ingredient.model";
 @Injectable()
 export class RecipeService {
 
-  recipeSelected = new EventEmitter<Recipe>();
-  selectedRecipe :Recipe;
-
-  private _recipes: Recipe[] = [
-    new Recipe(
-      "Chicken Pie",
-      "A nice tasty pie",
-      "http://ichef.bbci.co.uk/food/ic/food_16x9_506/recipes/chickenandmushroompi_89034_16x9.jpg",
-      [
-        new Ingredient("Chicken", 1),
-        new Ingredient("Mushrooms", 5)
-      ]
-    ),
-    new Recipe(
-      "Chicken Pie 2",
-      "A nice tasty pie",
-      "http://ichef.bbci.co.uk/food/ic/food_16x9_506/recipes/chickenandmushroompi_89034_16x9.jpg",
-      [
-        new Ingredient("Chicken", 1),
-        new Ingredient("Potatoes", 6)
-      ])
-  ];
+  private idCounter: number = 0;
+  private _recipes: Recipe[] = [];
 
   constructor() {
+    this.createRecipe(
+      new Recipe(
+        "Chicken Pie",
+        "A nice tasty pie",
+        "http://ichef.bbci.co.uk/food/ic/food_16x9_506/recipes/chickenandmushroompi_89034_16x9.jpg",
+        [
+          new Ingredient("Chicken", 1),
+          new Ingredient("Mushrooms", 5)
+        ]
+      )
+    )
+    this.createRecipe(
+      new Recipe(
+        "Chicken Pie 2",
+        "A nice tasty pie",
+        "http://ichef.bbci.co.uk/food/ic/food_16x9_506/recipes/chickenandmushroompi_89034_16x9.jpg",
+        [
+          new Ingredient("Chicken", 1),
+          new Ingredient("Potatoes", 6)
+        ])
+    )
   }
 
-  selectRecipe(recipe :Recipe){
-    this.selectedRecipe=recipe;
-    this.recipeSelected.emit(recipe)
+  createRecipe(recipe: Recipe) {
+    this.idCounter++;
+    recipe.id = this.idCounter;
+    this._recipes.push(recipe);
   }
 
   getRecipes(): Recipe[] {
     return this._recipes.slice();
   }
 
-  getSelectedRecipe() :Recipe {
-    return this.selectedRecipe;
+  getRecipeByID(id: number) {
+    for (let recipe of this._recipes) {
+      if (recipe.id == id) {
+        return recipe;
+      }
+    }
+    return null
   }
 
 }
